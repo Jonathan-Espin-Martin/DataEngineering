@@ -10,7 +10,8 @@ db.authors.insertMany([
     { _id: ObjectId(), name: "Mark", lastname: "Twain", nationality: "American" }
 ]);
 
-// Obtener los autores insertados
+// Asegurarse de que los autores se inserten correctamente
+db.authors.createIndex({ name: 1 }, { unique: true });
 let authors = db.authors.find().toArray();
 
 // Crear la colección de libros e insertar datos
@@ -22,7 +23,8 @@ db.books.insertMany([
     { _id: ObjectId(), title: "Adventures of Huckleberry Finn", gender: "Adventure", published_year: 1884, author_id: authors[4]._id }
 ]);
 
-// Obtener los libros insertados
+// Asegurarse de que los libros se inserten correctamente
+db.books.createIndex({ title: 1 }, { unique: true });
 let books = db.books.find().toArray();
 
 // Crear la colección de clientes e insertar datos
@@ -34,7 +36,8 @@ db.customers.insertMany([
     { _id: ObjectId(), name: "Charlie", lastname: "Davis", email: "charlie.davis@example.com", address: "654 Birch Street", phone_number: "4567890123" }
 ]);
 
-// Obtener los clientes insertados
+// Asegurarse de que los clientes se inserten correctamente
+db.customers.createIndex({ email: 1 }, { unique: true });
 let customers = db.customers.find().toArray();
 
 // Crear la colección de órdenes e insertar datos, incluyendo los detalles de las órdenes
