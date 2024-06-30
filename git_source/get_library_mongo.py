@@ -10,8 +10,8 @@ def all_books_authors():
         {
             "$lookup": {
                 "from": "authors",
-                "localField": "author.name",
-                "foreignField": "name",
+                "localField": "author_id",
+                "foreignField": "_id",
                 "as": "author_details"
             }
         },
@@ -38,8 +38,8 @@ def all_orders_by_customer():
         {
             "$lookup": {
                 "from": "customers",
-                "localField": "customer.name",
-                "foreignField": "name",
+                "localField": "customer_id",
+                "foreignField": "_id",
                 "as": "customer_details"
             }
         },
@@ -62,21 +62,13 @@ def all_orders_by_customer():
 def spend_by_customer():
     pipeline = [
         {
-            "$lookup": {
-                "from": "orders_details",
-                "localField": "_id",
-                "foreignField": "order_id",
-                "as": "order_details"
-            }
-        },
-        {
             "$unwind": "$order_details"
         },
         {
             "$lookup": {
                 "from": "customers",
-                "localField": "customer.name",
-                "foreignField": "name",
+                "localField": "customer_id",
+                "foreignField": "_id",
                 "as": "customer_details"
             }
         },
@@ -127,14 +119,6 @@ def spend_by_customer():
 
 def book_by_order():
     pipeline = [
-        {
-            "$lookup": {
-                "from": "orders_details",
-                "localField": "_id",
-                "foreignField": "order_id",
-                "as": "order_details"
-            }
-        },
         {
             "$unwind": "$order_details"
         },
