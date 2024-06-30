@@ -3,13 +3,13 @@ from mysql.connector import Error
 
 def execute_queries():
     try:
-            connection = mysql.connector.connect(
-            host='localhost',
-            database='library_online',
-            user='sa',
-            password='@Ubuntu123'
+        connection = mysql.connector.connect(
+        host='localhost',
+        database='library_online',
+        user='sa',
+        password='@Ubuntu123'
         )
-
+        
         cursor = connection.cursor(dictionary=True)
 
         # Query 1: All books and their authors
