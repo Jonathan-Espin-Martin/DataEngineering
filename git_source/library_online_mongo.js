@@ -2,43 +2,34 @@ db = db.getSiblingDB('library_online');
 db.dropDatabase();
 
 // Crear la colección de autores e insertar datos
-db.authors.insertMany([
+let authors = [
     { _id: ObjectId(), name: "George", lastname: "Orwell", nationality: "British" },
     { _id: ObjectId(), name: "J.K.", lastname: "Rowling", nationality: "British" },
     { _id: ObjectId(), name: "Ernest", lastname: "Hemingway", nationality: "American" },
     { _id: ObjectId(), name: "Jane", lastname: "Austen", nationality: "British" },
     { _id: ObjectId(), name: "Mark", lastname: "Twain", nationality: "American" }
-]);
-
-// Asegurarse de que los autores se inserten correctamente
-db.authors.createIndex({ name: 1 }, { unique: true });
-let authors = db.authors.find().toArray();
+];
+db.authors.insertMany(authors);
 
 // Crear la colección de libros e insertar datos
-db.books.insertMany([
+let books = [
     { _id: ObjectId(), title: "1984", gender: "Dystopian", published_year: 1949, author_id: authors[0]._id },
     { _id: ObjectId(), title: "Harry Potter", gender: "Fantasy", published_year: 1997, author_id: authors[1]._id },
     { _id: ObjectId(), title: "The Old Man and the Sea", gender: "Fiction", published_year: 1952, author_id: authors[2]._id },
     { _id: ObjectId(), title: "Pride and Prejudice", gender: "Romance", published_year: 1813, author_id: authors[3]._id },
     { _id: ObjectId(), title: "Adventures of Huckleberry Finn", gender: "Adventure", published_year: 1884, author_id: authors[4]._id }
-]);
-
-// Asegurarse de que los libros se inserten correctamente
-db.books.createIndex({ title: 1 }, { unique: true });
-let books = db.books.find().toArray();
+];
+db.books.insertMany(books);
 
 // Crear la colección de clientes e insertar datos
-db.customers.insertMany([
+let customers = [
     { _id: ObjectId(), name: "John", lastname: "Doe", email: "john.doe@example.com", address: "123 Elm Street", phone_number: "1234567890" },
     { _id: ObjectId(), name: "Jane", lastname: "Smith", email: "jane.smith@example.com", address: "456 Oak Street", phone_number: "0987654321" },
     { _id: ObjectId(), name: "Alice", lastname: "Johnson", email: "alice.johnson@example.com", address: "789 Pine Street", phone_number: "1230984567" },
     { _id: ObjectId(), name: "Bob", lastname: "Brown", email: "bob.brown@example.com", address: "321 Maple Street", phone_number: "7890123456" },
     { _id: ObjectId(), name: "Charlie", lastname: "Davis", email: "charlie.davis@example.com", address: "654 Birch Street", phone_number: "4567890123" }
-]);
-
-// Asegurarse de que los clientes se inserten correctamente
-db.customers.createIndex({ email: 1 }, { unique: true });
-let customers = db.customers.find().toArray();
+];
+db.customers.insertMany(customers);
 
 // Crear la colección de órdenes e insertar datos, incluyendo los detalles de las órdenes
 db.orders.insertMany([
