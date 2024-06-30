@@ -7,7 +7,7 @@ def insert_data():
         connection = mysql.connector.connect(
             host='localhost',
             database='library_online',
-            user='root',
+            user='sa',
             password='@Ubuntu123'
         )
 
