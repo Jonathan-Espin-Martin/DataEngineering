@@ -13,7 +13,10 @@ def insert_data():
 
         cursor = connection.cursor()
 
-        # Insert data into the customers table
+        tables = ['orders_details', 'orders', 'books', 'authors', 'customers']
+        for table in tables:
+            cursor.execute(f"TRUNCATE TABLE {table}")
+
         customers_data = [
             ('John', 'Doe', 'john.doe@example.com', '123 Elm Street', '1234567890'),
             ('Jane', 'Smith', 'jane.smith@example.com', '456 Oak Street', '0987654321'),
