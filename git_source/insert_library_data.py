@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
+import datetime
 
 def insert_data():
     try:
