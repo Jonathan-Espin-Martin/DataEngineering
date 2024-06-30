@@ -1,6 +1,8 @@
-use library_online
+db = db.getSiblingDB('library_online');
+db.dropDatabase();
 
-// Crear la colección de autores e insertar datos
+use library_online;
+
 db.authors.insertMany([
     { name: "George", lastname: "Orwell", nationality: "British" },
     { name: "J.K.", lastname: "Rowling", nationality: "British" },
@@ -9,7 +11,6 @@ db.authors.insertMany([
     { name: "Mark", lastname: "Twain", nationality: "American" }
 ]);
 
-// Crear la colección de libros e insertar datos
 db.books.insertMany([
     { title: "1984", gender: "Dystopian", published_year: 1949, author: { name: "George", lastname: "Orwell", nationality: "British" }},
     { title: "Harry Potter", gender: "Fantasy", published_year: 1997, author: { name: "J.K.", lastname: "Rowling", nationality: "British" }},
@@ -18,7 +19,6 @@ db.books.insertMany([
     { title: "Adventures of Huckleberry Finn", gender: "Adventure", published_year: 1884, author: { name: "Mark", lastname: "Twain", nationality: "American" }}
 ]);
 
-// Crear la colección de clientes e insertar datos
 db.customers.insertMany([
     { name: "John", lastname: "Doe", email: "john.doe@example.com", address: "123 Elm Street", phone_number: "1234567890" },
     { name: "Jane", lastname: "Smith", email: "jane.smith@example.com", address: "456 Oak Street", phone_number: "0987654321" },
@@ -27,7 +27,6 @@ db.customers.insertMany([
     { name: "Charlie", lastname: "Davis", email: "charlie.davis@example.com", address: "654 Birch Street", phone_number: "4567890123" }
 ]);
 
-// Crear la colección de órdenes e insertar datos
 db.orders.insertMany([
     { order_datetime: new Date(), customer: { name: "John", lastname: "Doe" }, total_amount: 150, order_details: [{ book: { title: "1984", gender: "Dystopian", published_year: 1949, author: { name: "George", lastname: "Orwell", nationality: "British" }}, amount: 2, unit_price: 50.00 }]},
     { order_datetime: new Date(), customer: { name: "Jane", lastname: "Smith" }, total_amount: 200, order_details: [{ book: { title: "Harry Potter", gender: "Fantasy", published_year: 1997, author: { name: "J.K.", lastname: "Rowling", nationality: "British" }}, amount: 1, unit_price: 100.00 }]},
@@ -36,15 +35,14 @@ db.orders.insertMany([
     { order_datetime: new Date(), customer: { name: "Charlie", lastname: "Davis" }, total_amount: 300, order_details: [{ book: { title: "Adventures of Huckleberry Finn", gender: "Adventure", published_year: 1884, author: { name: "Mark", lastname: "Twain", nationality: "American" }}, amount: 1, unit_price: 150.00 }]}
 ]);
 
-// Consultar y mostrar todos los datos insertados
-print("Authors:")
-printjson(db.authors.find().toArray())
+print("Authors:");
+printjson(db.authors.find().toArray());
 
-print("Books:")
-printjson(db.books.find().toArray())
+print("Books:");
+printjson(db.books.find().toArray());
 
-print("Customers:")
-printjson(db.customers.find().toArray())
+print("Customers:");
+printjson(db.customers.find().toArray());
 
-print("Orders:")
-printjson(db.orders.find().toArray())
+print("Orders:");
+printjson(db.orders.find().toArray());
