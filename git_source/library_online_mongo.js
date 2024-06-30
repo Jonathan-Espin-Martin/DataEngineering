@@ -1,8 +1,7 @@
 db = db.getSiblingDB('library_online');
 db.dropDatabase();
 
-use library_online;
-
+// Crear la colección de autores e insertar datos
 db.authors.insertMany([
     { _id: ObjectId(), name: "George", lastname: "Orwell", nationality: "British" },
     { _id: ObjectId(), name: "J.K.", lastname: "Rowling", nationality: "British" },
@@ -11,8 +10,10 @@ db.authors.insertMany([
     { _id: ObjectId(), name: "Mark", lastname: "Twain", nationality: "American" }
 ]);
 
+// Obtener los autores insertados
 let authors = db.authors.find().toArray();
 
+// Crear la colección de libros e insertar datos
 db.books.insertMany([
     { _id: ObjectId(), title: "1984", gender: "Dystopian", published_year: 1949, author_id: authors[0]._id },
     { _id: ObjectId(), title: "Harry Potter", gender: "Fantasy", published_year: 1997, author_id: authors[1]._id },
@@ -21,8 +22,10 @@ db.books.insertMany([
     { _id: ObjectId(), title: "Adventures of Huckleberry Finn", gender: "Adventure", published_year: 1884, author_id: authors[4]._id }
 ]);
 
+// Obtener los libros insertados
 let books = db.books.find().toArray();
 
+// Crear la colección de clientes e insertar datos
 db.customers.insertMany([
     { _id: ObjectId(), name: "John", lastname: "Doe", email: "john.doe@example.com", address: "123 Elm Street", phone_number: "1234567890" },
     { _id: ObjectId(), name: "Jane", lastname: "Smith", email: "jane.smith@example.com", address: "456 Oak Street", phone_number: "0987654321" },
@@ -31,8 +34,10 @@ db.customers.insertMany([
     { _id: ObjectId(), name: "Charlie", lastname: "Davis", email: "charlie.davis@example.com", address: "654 Birch Street", phone_number: "4567890123" }
 ]);
 
+// Obtener los clientes insertados
 let customers = db.customers.find().toArray();
 
+// Crear la colección de órdenes e insertar datos, incluyendo los detalles de las órdenes
 db.orders.insertMany([
     { _id: ObjectId(), order_datetime: new Date(), customer_id: customers[0]._id, total_amount: 150, order_details: [{ book_id: books[0]._id, amount: 2, unit_price: 50.00 }] },
     { _id: ObjectId(), order_datetime: new Date(), customer_id: customers[1]._id, total_amount: 200, order_details: [{ book_id: books[1]._id, amount: 1, unit_price: 100.00 }] },
